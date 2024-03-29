@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amor em Flor</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+            background-color: #ffebf5;
+            /* Fundo rosa claro */
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            /* Cor dos corações */
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite alternate;
+            /* Animação suave */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .amor {
+            position: absolute;
+            color: #ff69b4;
+            /* Cor rosa, representando o amor */
+            font-size: 24px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            /* Efeito de fade-in */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="coracoes"></div>
+
+    <button onclick="mostrarAmor()">♥️ Samu te ama! ♥️</button>
+
+    <script>
+        var frasesSamu = [
+            "Samu te ama muitooo, Mari!",
+            "Você é minha razão de sorrir, Mari!",
+            "Mari, com você tudo é mais bonito!",
+            "Mari, você é a pessoa mais incrível que já conheci!",
+            "Mari, você é minha alegria diária!"
+        ];
+
+        function mostrarAmor() {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var amor = document.createElement("p");
+            amor.className = "amor";
+            amor.innerHTML = "&#10084; " + getRandomPhrase(frasesSamu) + " &#10084;";
+            amor.style.left = Math.random() * width + "px";
+            amor.style.top = Math.random() * height + "px";
+            document.body.appendChild(amor);
+
+            setTimeout(function () {
+                amor.remove();
+            }, 5000); // Aparecer por 5 segundos
+
+            setTimeout(function () {
+                document.querySelector("button").innerHTML = "♥️ Mari, você é especial! ♥️";
+                setTimeout(function () {
+                    document.querySelector("button").innerHTML = "♥️ Samu te ama! ♥️";
+                }, 5000); // Botão volta ao normal após 5 segundos
+            }, 2000); // Botão muda após 2 segundos
+        }
+
+        function getRandomPhrase(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // Criando corações flutuantes
+        var coracoesContainer = document.getElementById("coracoes");
+        for (var i = 0; i < 20; i++) {
+            var heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw"; // Posição horizontal aleatória
+            heart.style.top = Math.random() * 100 + "vh"; // Posição vertical aleatória
+            coracoesContainer.appendChild(heart);
+        }
+    </script>
+
+</body>
+
+</html>
